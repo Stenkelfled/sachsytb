@@ -1,0 +1,4 @@
+activate_venv
+bin/
+.buildozer/
+.idea/

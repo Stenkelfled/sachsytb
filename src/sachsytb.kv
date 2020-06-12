@@ -1,0 +1,42 @@
+#:kivy 1.10.1
+
+<FileWin>:
+
+    text_input: text_input
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'OS: ' + root.os_name
+
+        Button:
+            text: 'openFile'
+            on_release: root.load_dialog()
+
+        Label:
+            top: root.top - 30
+            text: 'Filename: ' + root.f_name
+
+        TextInput:
+            id: text_input
+            text: ''
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: root.start_path
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
